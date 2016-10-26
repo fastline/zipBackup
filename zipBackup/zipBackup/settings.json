@@ -1,0 +1,10 @@
+{
+  "SrcPath": [
+    "C:\\Intel",
+    "D:\\KXDrv_6.3.0909_...D_Signed_EU"
+  ],
+
+  "DstPath": "D:\\backup",
+  "ShutdownAfter": false,
+  "ZipBinPath": ".\\tools\\7za.exe"
+}
