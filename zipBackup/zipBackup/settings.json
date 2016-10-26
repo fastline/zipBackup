@@ -1,7 +1,8 @@
 {
   "SrcPath": [
     "C:\\Intel",
-    "D:\\KXDrv_6.3.0909_...D_Signed_EU"
+    "D:\\KXDrv_6.3.0909_...D_Signed_EU",
+    "C:\\wamp64"
   ],
 
   "DstPath": "D:\\backup",

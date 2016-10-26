@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Text;
 
-namespace ConsoleApplication1
+namespace zipBackup
 {
     class ZipCreator
     {
@@ -56,16 +56,16 @@ namespace ConsoleApplication1
 
         public void createZip()
         {
+            StringBuilder sb = new StringBuilder(500);
+            sb.Append("u -t7z \"" + this._dstPath + "\" ");
+
             foreach (string currentSrc in this._srcPath)
             {
-                ProcessStartInfo p = new ProcessStartInfo();
-                p.FileName = this._zipBinPath;
-                p.Arguments = "u -t7z \"" + this._dstPath + "\" \"" + currentSrc + "\" -mx=9";
-                p.WindowStyle = ProcessWindowStyle.Normal;
-                Process x = Process.Start(p);
-                x.WaitForExit();
+                sb.Append("\"").Append(currentSrc).Append("\" ");
             }
 
+            ProcessHandler ph = new ProcessHandler(this._zipBinPath, sb.ToString(), "normal");
+            ph.startProcess();
         }
     }
 }

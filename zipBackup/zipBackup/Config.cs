@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace ConsoleApplication1
+namespace zipBackup
 {
     public class Config
     {

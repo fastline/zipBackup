@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System.IO;
 
-namespace ConsoleApplication1
+namespace zipBackup
 {
     class Program
     {
@@ -16,12 +16,11 @@ namespace ConsoleApplication1
 
             ZipCreator zc = new ZipCreator(dConfig.ZipBinPath, dConfig.DstPath, dConfig.SrcPath);
             zc.createZip();
+
             if (dConfig.ShutdownAfter)
             {
-                ProcessStartInfo psi = new ProcessStartInfo("shutdown", "/s /t 0");
-                psi.CreateNoWindow = true;
-                psi.UseShellExecute = false;
-                Process.Start(psi);
+                ProcessHandler ph = new ProcessHandler("shutdown", "-r -t 00", "false");
+                ph.startProcess();
             }
         }
     }
