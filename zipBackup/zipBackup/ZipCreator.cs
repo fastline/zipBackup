@@ -1,14 +1,15 @@
 ﻿using System.Text;
+using System.Collections.Generic;
 
 namespace zipBackup
 {
     class ZipCreator
     {
         private string _zipBinPath;
-        private string[] _srcPath;
+        private List<string> _srcPath;
         private string _dstPath;
 
-        public ZipCreator(string _zipBinPath, string _dstPath, string[] _srcPath)
+        public ZipCreator(string _zipBinPath, string _dstPath, List<string> _srcPath)
         {
             this._zipBinPath = _zipBinPath;
             this._dstPath = _dstPath;
@@ -28,7 +29,7 @@ namespace zipBackup
             }
         }
 
-        public string[] SrcPath
+        public List<string> SrcPath
         {
             get
             {

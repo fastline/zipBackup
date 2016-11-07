@@ -1,19 +1,32 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
+using System.Collections.Generic;
 
 namespace zipBackup
 {
     public class Config
     {
-        private string[] _srcPath;
+        private List<string> _srcPath;
         private string _dstPath;
         private bool _shutdownAfter;
         private string _zipBinPath;
 
         public Config()
         {
-            this._srcPath = new string[0];
+            this._srcPath = new List<string>();
             this._dstPath = "";
             this._shutdownAfter = false;
+        }
+
+        public void checkPaths()
+        {
+            for (int i = this._srcPath.Count -1; i >= 0; i--)
+            {
+                PathValidator.tryPath(this._srcPath[i]);
+            }
+            PathValidator.tryPath(this._dstPath);
+            PathValidator.tryPath(this._zipBinPath);
+            
         }
 
         public override string ToString()
@@ -23,19 +36,12 @@ namespace zipBackup
             sb.Append("Destination: ").AppendLine(this._dstPath);
             sb.Append("7zip exe: ").AppendLine(this._zipBinPath);
             sb.AppendLine("Source Dirs");
-            for (int i = 0; i < this._srcPath.Length; i++)
+            foreach (string item in this._srcPath)
             {
-                sb.Append("     Index ").Append(i).Append(" Path: ").AppendLine(this._srcPath[i]);
+                sb.Append("     Index ").Append(" Path: ").AppendLine(item);
             }
-            return sb.ToString();
-        }
 
-        public void setDstPath()
-        {
-            string _compName = System.Environment.MachineName;
-            string _usrName = System.Environment.UserName;
-            StringBuilder sb = new StringBuilder(500);
-            this._dstPath = sb.Append(this._dstPath).Append(@"\").Append(_compName).Append(@"-").Append(_usrName).Append(@".7z").ToString();
+            return sb.ToString();
         }
 
         public bool ShutdownAfter
@@ -60,11 +66,15 @@ namespace zipBackup
 
             set
             {
-                _dstPath = value;
+                PathValidator.tryPath(value);
+                string _compName = System.Environment.MachineName;
+                string _usrName = System.Environment.UserName;
+                StringBuilder sb = new StringBuilder(500);
+                _dstPath = sb.Append(value).Append(@"\").Append(_compName).Append(@"-").Append(_usrName).Append(@".7z").ToString();
             }
         }
 
-        public string[] SrcPath
+        public List<string> SrcPath
         {
             get
             {
@@ -86,6 +96,7 @@ namespace zipBackup
 
             set
             {
+                PathValidator.tryPath(value);
                 _zipBinPath = value;
             }
         }

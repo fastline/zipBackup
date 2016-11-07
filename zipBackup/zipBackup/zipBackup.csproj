@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logger.cs" />
+    <Compile Include="NotValidPathException.cs" />
+    <Compile Include="PathValidator.cs" />
     <Compile Include="ProcessHandler.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Program.cs" />
