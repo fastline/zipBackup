@@ -20,9 +20,9 @@ namespace zipBackup
 
         public void checkPaths()
         {
-            for (int i = this._srcPath.Count -1; i >= 0; i--)
-            {
-                PathValidator.tryPath(this._srcPath[i]);
+            foreach (string item in this._srcPath)
+            { 
+                PathValidator.tryPath(item);
             }
             PathValidator.tryPath(this._dstPath);
             PathValidator.tryPath(this._zipBinPath);
@@ -66,7 +66,7 @@ namespace zipBackup
 
             set
             {
-                PathValidator.tryPath(value);
+                //PathValidator.tryPath(value);
                 string _compName = System.Environment.MachineName;
                 string _usrName = System.Environment.UserName;
                 StringBuilder sb = new StringBuilder(500);
@@ -96,7 +96,7 @@ namespace zipBackup
 
             set
             {
-                PathValidator.tryPath(value);
+                //PathValidator.tryPath(value);
                 _zipBinPath = value;
             }
         }

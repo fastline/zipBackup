@@ -6,18 +6,7 @@ namespace zipBackup
 {
     static class PathValidator
     {
-        /*public static bool isPathValid(string path)
-        {
-            if (Directory.Exists(path)) 
-            {
-                return true;
-            }
-            else
-            {
-                return File.Exists(path);
-            }
-        }*/
-
+        
         public static void tryPath(string path)
         {
             if(!Directory.Exists(path) && !File.Exists(path))

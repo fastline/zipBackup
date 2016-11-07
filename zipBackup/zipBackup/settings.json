@@ -6,5 +6,5 @@
 
   "DstPath": "D:\\backup",
   "ShutdownAfter": false,
-  "ZipBinPath": ".\\tools\\7za.exeasd"
+  "ZipBinPath": ".\\tools\\7za.exe"
 }

@@ -26,7 +26,7 @@ namespace zipBackup
                     ph.startProcess();
                 }
             }
-            catch (NotValidPathException e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
