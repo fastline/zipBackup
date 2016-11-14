@@ -5,6 +5,9 @@
   ],
 
   "DstPath": "D:\\backup",
+  //Can be false or true
   "ShutdownAfter": false,
-  "ZipBinPath": ".\\tools\\7za.exe"
+  "ZipBinPath": ".\\tools\\7za.exe",
+  //Can be "normal" or "hidden"
+  "ZipProgressVisible": "normal"
 }

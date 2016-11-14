@@ -17,9 +17,8 @@ namespace zipBackup
 
         public void startProcess()
         {
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = this._execPath;
-            psi.Arguments = this._arguments;
+            ProcessStartInfo psi = new ProcessStartInfo(this._execPath, this._arguments);
+
             if(this._windowStyle.Contains("normal"))
             {
                 psi.WindowStyle = ProcessWindowStyle.Normal;

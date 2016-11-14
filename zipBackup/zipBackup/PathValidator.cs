@@ -15,9 +15,10 @@ namespace zipBackup
             }
         }
 
-        public static bool isPathWritable(string path)
+        public static void checkPathWritable(string path)
         {
-            bool isWritable;
+            PathValidator.tryPath(path);
+
             StringBuilder sb = new StringBuilder(500);
             sb.Append(path).Append("test.txt");
             string testFile = sb.ToString();
@@ -26,15 +27,11 @@ namespace zipBackup
             {
                 File.WriteAllText(testFile, testFile);
                 File.Delete(testFile);
-                isWritable = true;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Target is not writable!");
-                isWritable = false;
+                throw new NotValidPathException("Path: " + path + " is not writable\n" + e);
             }
-            
-            return isWritable;
         }
     }
 }

@@ -10,12 +10,14 @@ namespace zipBackup
         private string _dstPath;
         private bool _shutdownAfter;
         private string _zipBinPath;
-
+        private string _zipProgressVisible;
+        
         public Config()
         {
             this._srcPath = new List<string>();
             this._dstPath = "";
             this._shutdownAfter = false;
+            this.ZipProgressVisible = "normal";
         }
 
         public void checkPaths()
@@ -66,7 +68,7 @@ namespace zipBackup
 
             set
             {
-                //PathValidator.tryPath(value);
+                PathValidator.checkPathWritable(value);
                 string _compName = System.Environment.MachineName;
                 string _usrName = System.Environment.UserName;
                 StringBuilder sb = new StringBuilder(500);
@@ -96,8 +98,21 @@ namespace zipBackup
 
             set
             {
-                //PathValidator.tryPath(value);
+                PathValidator.tryPath(value);
                 _zipBinPath = value;
+            }
+        }
+
+        public string ZipProgressVisible
+        {
+            get
+            {
+                return _zipProgressVisible;
+            }
+
+            set
+            {
+                _zipProgressVisible = value;
             }
         }
     }

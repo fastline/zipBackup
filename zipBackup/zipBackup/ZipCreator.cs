@@ -8,12 +8,14 @@ namespace zipBackup
         private string _zipBinPath;
         private List<string> _srcPath;
         private string _dstPath;
+        private string _zipProgressVisible;
 
-        public ZipCreator(string _zipBinPath, string _dstPath, List<string> _srcPath)
+        public ZipCreator(string _zipBinPath, string _dstPath, List<string> _srcPath, string _zipProgressVisible)
         {
             this._zipBinPath = _zipBinPath;
             this._dstPath = _dstPath;
             this._srcPath = _srcPath;
+            this._zipProgressVisible = _zipProgressVisible;
         }
 
         public string ZipBinPath
@@ -65,7 +67,7 @@ namespace zipBackup
                 sb.Append("\"").Append(currentSrc).Append("\" ");
             }
 
-            ProcessHandler ph = new ProcessHandler(this._zipBinPath, sb.ToString(), "normal");
+            ProcessHandler ph = new ProcessHandler(this._zipBinPath, sb.ToString(), this._zipProgressVisible);
             ph.startProcess();
         }
     }

@@ -9,6 +9,8 @@ namespace zipBackup
     {
         static void Main(string[] args)
         {
+            Logger.createLogSource();
+            Logger.writeEventLog("CICA", "zipBackup");
             string confPath = "settings.json";
 
             try
@@ -17,7 +19,7 @@ namespace zipBackup
                 Config dConfig = JsonConvert.DeserializeObject<Config>(File.ReadAllText(confPath));
                 dConfig.checkPaths();
                 Console.Write(dConfig.ToString());
-                ZipCreator zc = new ZipCreator(dConfig.ZipBinPath, dConfig.DstPath, dConfig.SrcPath);
+                ZipCreator zc = new ZipCreator(dConfig.ZipBinPath, dConfig.DstPath, dConfig.SrcPath, dConfig.ZipProgressVisible);
                 zc.createZip();
                 
                 if (dConfig.ShutdownAfter)
@@ -33,14 +35,6 @@ namespace zipBackup
 
             Console.WriteLine("\nJobs done");
             Console.ReadKey();
-            /*ZipCreator zc = new ZipCreator(dConfig.ZipBinPath, dConfig.DstPath, dConfig.SrcPath);
-            zc.createZip();
-            /*
-            if (dConfig.ShutdownAfter)
-            {
-                ProcessHandler ph = new ProcessHandler("shutdown", "-r -t 00", "false");
-                ph.startProcess();
-            }*/
         }
     }
 }
