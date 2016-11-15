@@ -22,13 +22,19 @@ namespace zipBackup
 
         public void checkPaths()
         {
-            foreach (string item in this._srcPath)
-            { 
-                PathValidator.tryPath(item);
+            try
+            {
+                foreach (string item in this._srcPath)
+                {
+                    PathValidator.tryPath(item);
+                }
+                PathValidator.tryPath(this._dstPath);
+                PathValidator.tryPath(this._zipBinPath);
             }
-            PathValidator.tryPath(this._dstPath);
-            PathValidator.tryPath(this._zipBinPath);
-            
+            catch
+            {
+                throw;
+            }
         }
 
         public override string ToString()
@@ -68,11 +74,18 @@ namespace zipBackup
 
             set
             {
-                PathValidator.checkPathWritable(value);
-                string _compName = System.Environment.MachineName;
-                string _usrName = System.Environment.UserName;
-                StringBuilder sb = new StringBuilder(500);
-                _dstPath = sb.Append(value).Append(@"\").Append(_compName).Append(@"-").Append(_usrName).Append(@".7z").ToString();
+                try
+                {
+                    PathValidator.checkPathWritable(value);
+                    string _compName = System.Environment.MachineName;
+                    string _usrName = System.Environment.UserName;
+                    StringBuilder sb = new StringBuilder(500);
+                    _dstPath = sb.Append(value).Append(@"\").Append(_compName).Append(@"-").Append(_usrName).Append(@".7z").ToString();
+                }
+                catch
+                {
+                    throw;
+                }
             }
         }
 

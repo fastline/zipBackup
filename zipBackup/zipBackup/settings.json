@@ -1,13 +1,26 @@
 {
+  /*
+    setting.json
+    All network and local path shuld be given with double backslash.
+  */
+
+  //Comma separeted list of directoris what shuld be saved to backup archive
   "SrcPath": [
     "C:\\Intel",
     "D:\\KXDrv_6.3.0909_...D_Signed_EU"
   ],
 
-  "DstPath": "D:\\backup",
-  //Can be false or true
+  //Destination for backup archive
+  "DstPath": "D:\\backup\\",
+
+  /*If it's true the computer will shutdown after the job finished
+    Can be false or true */
   "ShutdownAfter": false,
+
+  //Do not modify unless you have 7za.exe at another location
   "ZipBinPath": ".\\tools\\7za.exe",
-  //Can be "normal" or "hidden"
+
+  /*If it's set to normal, the 7za default progress window will appear
+    Can be "normal" or "hidden"*/
   "ZipProgressVisible": "normal"
 }

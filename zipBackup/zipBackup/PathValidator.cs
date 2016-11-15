@@ -19,18 +19,16 @@ namespace zipBackup
         {
             PathValidator.tryPath(path);
 
-            StringBuilder sb = new StringBuilder(500);
-            sb.Append(path).Append("test.txt");
-            string testFile = sb.ToString();
+            string testFile = path + "test.txt";
 
             try
             {
                 File.WriteAllText(testFile, testFile);
                 File.Delete(testFile);
             }
-            catch (Exception e)
+            catch
             {
-                throw new NotValidPathException("Path: " + path + " is not writable\n" + e);
+                throw;
             }
         }
     }
